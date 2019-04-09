@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -71,18 +73,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void parseJSONWithGSON2(String jsonData) {
-        Gson gson = new Gson();
-        List<Novel> appList = gson.fromJson(jsonData, new TypeToken<List<Novel>>() {
-        }.getType());
-        for (Novel novel : appList) {
-            Log.d("MainActivity", "bid :" + novel.getBid());
-            Log.d("MainActivity", "bookname:" + novel.getBookname());
-            Log.d("MainActivity", "authorname" + novel.getAuthor_name());
-            Log.d("MainActivity", "book_cover" + novel.getBook_cover());
-            Log.d("MainActivity", "class_name" + novel.getClass_name());
-            Log.d("MainActivity", "stat_name" + novel.getStat_name());
-            Log.d("MainActivity", "num_click" + novel.getNum_click());
+        try{
+            JSONArray jsonArray = new JSONArray(jsonData);
+            for (int i=0;i<jsonArray.length();i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
+
 
     }
 
